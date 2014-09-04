@@ -5,6 +5,7 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-notify'
   grunt.loadNpmTasks 'grunt-contrib-uglify'
   grunt.loadNpmTasks 'grunt-contrib-watch'
+  grunt.loadNpmTasks 'grunt-tsd'
 
   # Distribution build
   grunt.registerTask "dist", ["ts:dist", "notify:ts", "uglify:dist", "notify:uglify"]
@@ -40,6 +41,13 @@ module.exports = (grunt) ->
       dist:
         files:
           "lib/tally.min.js": ["dist/tally.js"]
+
+    # TSD options
+    tsd:
+      refresh:
+        options:
+          command: 'reinstall'
+          config: './tsd.json'
 
     # Watch options
     watch:
